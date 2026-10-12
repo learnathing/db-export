@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "db-export"
+version = "0.1.0"
+description = "Export database schema documentation to Word"
+requires-python = ">=3.9"
+dependencies = ["SQLAlchemy>=2.0,<2.1", "python-docx>=1.1,<2", "prompt-toolkit>=3.0.43,<4"]
+
+[project.optional-dependencies]
+mysql = ["PyMySQL>=1.1,<2"]
+postgres = ["psycopg[binary]>=3.2,<4"]
+sqlserver = ["pyodbc>=5,<6"]
+oracle = ["oracledb>=2,<4"]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+db-export = "db_export.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
